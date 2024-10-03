@@ -1,6 +1,7 @@
 const express=require('express')
-const { userLogin } = require('../controller/userController')
+const { userLogin, allUsers, singleUser, addUser, updateUser } = require('../controller/userController')
 const router=express.Router()
+
 
 router.get('/',(req,res,next)=>{
 
@@ -8,11 +9,13 @@ router.get('/',(req,res,next)=>{
 })
 
 router.post('/login',userLogin)
+router.get('/users',allUsers)
+router.get('/users/:id',singleUser)
+router.post('/add',addUser)
+router.put('/update/:id',updateUser)
+router.get('*',(req,res,next)=>{
 
-//Another method to login router
+    res.send('No route avilable')
+})
 
-// router.get('/login',(req,res,next)=>{
-
-//     res.send('reached at user login')
-// })
  module.exports=router
